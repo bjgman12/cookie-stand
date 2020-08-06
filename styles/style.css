@@ -9,14 +9,6 @@ body {
   margin: 0px;
   font-family:Lemonada;
 }
-
-div {
-  border: 1px solid red;
-}
-
-section {
-  border :1px solid blue;
-}
 .brand {
   color : salmon;
   font-size: 30px;
@@ -25,10 +17,7 @@ section {
   display: grid;
   grid-template-columns: 1fr;
 }
-/* lists */
-ul {
-  list-style-type: circle;
-}
+
 /* Nav Style */
 
 .navWrap {
@@ -75,10 +64,8 @@ ul {
   color: black !important;
 }
 
-#siteContainer {
-  height: 900px;
-}
 
+/* new */
 #mascot h1 {
   text-align:center;
   font-size: 3em;
@@ -92,3 +79,26 @@ ul {
   width: 20%;
 }
 
+#siteContainer {
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+#siteContainer > div {
+  position: relative;
+  text-align: center;
+  padding:15px;
+  background-color: black;
+  color:white;
+}
+
+
+#siteContainer > div > :first-child {
+  font-size: 25px;
+  color: salmon;
+}
+
+#siteContainer > div > ul > :last-child {
+  font-size: 20px;
+  color: red;
+}
