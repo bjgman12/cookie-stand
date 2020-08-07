@@ -55,6 +55,8 @@ var Lima = {
 
 };
 
+var Sites = [Seattle, Tokyo, Dubai, Paris, Lima];
+
 function siteSales(siteArr) {
   var hourSales = 0;
   var totalSales = 0;
@@ -95,8 +97,6 @@ function siteSales(siteArr) {
 
   }
 }
-
-var Sites = [Seattle, Tokyo, Dubai, Paris, Lima];
 
 for (var i = 0; i < Sites.length; i++) {
   siteSales(Sites[i]);

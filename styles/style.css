@@ -8,6 +8,8 @@
 body {
   margin: 0px;
   font-family:Lemonada;
+  background-color: black;
+  color: salmon;
 }
 .brand {
   color : salmon;
@@ -44,24 +46,24 @@ body {
 }
 
 .navLinkWrap a {
-  color: #8a8a8a;
+  color: salmon;
   text-decoration: none;
   transition: color 0.5s;
 }
 
 .navLinkWrap:hover {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid red;
 }
 
 .navLinkWrap a:hover {
-  color: black !important;
+  color:red!important;
 }
 
 .activeNavLink{
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid red;
 }
 .activeNavLink a{
-  color: black !important;
+  color:red !important;
 }
 
 
