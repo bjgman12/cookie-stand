@@ -94,13 +94,23 @@ body {
   color:white;
 }
 
-
-#siteContainer > div > :first-child {
-  font-size: 25px;
-  color: salmon;
+table {
+  margin-left: auto;
+  margin-right: auto;
+  text-align:center;
+}
+table , td , tr, th {
+  border: 1px solid red;
+  padding: 1em;
+}
+td {
+  color: white;
 }
 
-#siteContainer > div > ul > :last-child {
-  font-size: 20px;
-  color: red;
+tr > :first-child {
+  color:salmon;
+}
+
+th {
+  color: crimson;
 }
