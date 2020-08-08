@@ -64,7 +64,7 @@ Store.prototype.staffReq = function () {
   var hourStaff = 0;
   for (var i = 0; i < hoursOfOperation.length; i++) {
     var hourlyCustomers = ((Math.floor(Math.random() * (this.maxCustomer - this.minCustomer)) + this.minCustomer) + 1) * traffic[i];
-    hourStaff = (hourlyCustomers * this.avgSale) / 20;
+    hourStaff = (this.salesActual[i] / 20) + 1;
     if (hourStaff < 2) {
       hourStaff = 2;
     }
