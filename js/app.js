@@ -54,15 +54,13 @@ var Lima = {
   salesSum: 0
 
 };
-
 var Sites = [Seattle, Tokyo, Dubai, Paris, Lima];
-
-function siteSales(siteArr) {
+function compileSiteSales(siteArr) {
   var hourSales = 0;
   var totalSales = 0;
   // calculate and store simulated amounts of cookies purchased for each hour 
-  for (var i = 0; i <= 13; i++) {
-    var hourlyCustomers = (Math.floor(Math.random() * (siteArr.maxCustomer - siteArr.minCustomer)) + siteArr.minCustomer);
+  for (var i = 0; i < siteArr.hoursOfOperation.length; i++) {
+    var hourlyCustomers = (Math.floor(Math.random() * (siteArr.maxCustomer - siteArr.minCustomer)) + siteArr.minCustomer) + 1;
     hourSales = hourlyCustomers * siteArr.avgSale;
     siteArr.salesSum += hourlyCustomers * siteArr.avgSale;
     totalSales += hourSales;
@@ -97,7 +95,6 @@ function siteSales(siteArr) {
 
   }
 }
-
 for (var i = 0; i < Sites.length; i++) {
-  siteSales(Sites[i]);
+  compileSiteSales(Sites[i]);
 }
