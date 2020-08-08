@@ -1,7 +1,6 @@
 'use strict';
-
 var hoursOfOperation = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
-// make object
+// make objects
 var Seattle = {
   name: 'Seattle',
   minCustomer: 23,
@@ -9,9 +8,7 @@ var Seattle = {
   avgSale: 6.3,
   salesActual: [],
   salesSum: 0
-
 };
-
 var Tokyo = {
   name: 'Tokyo',
   minCustomer: 3,
@@ -20,7 +17,6 @@ var Tokyo = {
   salesActual: [],
 
   salesSum: 0
-
 };
 var Dubai = {
   name: 'Dubai',
@@ -29,9 +25,7 @@ var Dubai = {
   avgSale: 3.7,
   salesActual: [],
   salesSum: 0
-
 };
-
 var Paris = {
   name: 'Paris',
   minCustomer: 20,
@@ -39,9 +33,7 @@ var Paris = {
   avgSale: 2.3,
   salesActual: [],
   salesSum: 0
-
 };
-
 var Lima = {
   name: 'Lima',
   minCustomer: 2,
@@ -49,7 +41,6 @@ var Lima = {
   avgSale: 4.6,
   salesActual: [],
   salesSum: 0
-
 };
 var Sites = [Seattle, Tokyo, Dubai, Paris, Lima];
 function compileSiteSales(siteArr) {
@@ -75,17 +66,14 @@ function compileSiteSales(siteArr) {
   siteContainer.append(newSite);
   newSite.append(siteName);
   newSite.append(salesList);
-  for (i = 0; i <= siteArr.salesActual.length; i++) {
-    if (i < siteArr.salesActual.length) {
-      var salesItem = document.createElement('li');
-      salesItem.textContent = `${hoursOfOperation[i]}: ${siteArr.salesActual[i]} Cookies`;
-      salesList.append(salesItem);
-    } else {
-      salesItem = document.createElement('li');
-      salesItem.textContent = `Total: ${parseInt(totalSales)} Cookies`;
-      salesList.append(salesItem);
-    }
+  for (i = 0; i < siteArr.salesActual.length; i++) {
+    var salesItem = document.createElement('li');
+    salesItem.textContent = `${hoursOfOperation[i]}: ${siteArr.salesActual[i]} Cookies`;
+    salesList.append(salesItem);
   }
+  salesItem = document.createElement('li');
+  salesItem.textContent = `Total: ${parseInt(totalSales)} Cookies`;
+  salesList.append(salesItem);
 }
 for (var i = 0; i < Sites.length; i++) {
   compileSiteSales(Sites[i]);
