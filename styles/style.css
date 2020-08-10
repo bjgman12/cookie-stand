@@ -5,19 +5,27 @@
   font-family:Lemonada;
   src: url(fonts/Lemonada-Bold.ttf);
 }
+*{
+  margin:0;
+}
 body {
-  margin: 0px;
+ 
   font-family:Lemonada;
-  background-color: black;
-  color: salmon;
+  background-color:#ebf5ee;
+  color: #283044;
+  height:100%;
+  display:flex;
+  flex-direction: column;
 }
 .brand {
-  color : salmon;
+  color :#283044;
   font-size: 30px;
 }
 .container {
   display: grid;
   grid-template-columns: 1fr;
+  flex: 1 0 auto;
+
 }
 
 /* Nav Style */
@@ -25,8 +33,8 @@ body {
 .navWrap {
   display:flex;
   justify-content: space-between;
-  padding:38px;
-
+  padding:10px;
+  border-bottom:1px solid #8b786d ;
 }
 
 .leftNav {
@@ -37,6 +45,7 @@ body {
   margin-right: 20px;
   font-size: 0.9em;
   text-transform: uppercase;
+  
 }
 
 .navLinkWrap {
@@ -46,7 +55,7 @@ body {
 }
 
 .navLinkWrap a {
-  color: salmon;
+  color: :#283044;
   text-decoration: none;
   transition: color 0.5s;
 }
@@ -71,7 +80,7 @@ body {
 #mascot h1 {
   text-align:center;
   font-size: 3em;
-  color: Salmon
+
 }
 
 #mascot img {
@@ -92,26 +101,42 @@ body {
   padding:15px;
   background-color: black;
   color:white;
-}
 
+}
+/* table */
 table {
   margin-left: auto;
   margin-right: auto;
   text-align:center;
   margin-top: 2em;
+  background-color:#8b786d;
+  font-weight: bold;
 }
 table , td , tr, th {
-  border: 1px solid red;
+  border: 1px solid #bfa89e;
+  border-radius: 20px;
   padding: 1em;
 }
 td {
-  color: white;
+  color: black;
 }
 
 tr > :first-child {
-  color:salmon;
+  color:#78a1bb;
 }
 
 th {
-  color: crimson;
+  color:#78a1bb;
 }
+
+
+footer {
+  border-top: 1px solid #8b786d;
+  margin-top:20px;
+  padding:15px;
+  display:flex;
+  justify-content: space-between;
+  flex-shrink:0;
+
+}
+/* footer */

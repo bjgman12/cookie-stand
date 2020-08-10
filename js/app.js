@@ -139,7 +139,6 @@ function renderEnd() {
   lastRow.append(rowData);
 }
 renderEnd();
-//new table
 
 siteTable = document.createElement('table');
 
@@ -158,7 +157,7 @@ function newTable() {
   tableRow.prepend(tableCell);
 }
 newTable();
-// apply to logic
+
 seattle.renderStaffTable();
 tokyo.renderStaffTable();
 dubai.renderStaffTable();
@@ -192,6 +191,3 @@ function renderEndStaff() {
 renderEndStaff();
 
 
-// calc staff needed
-
-//render
