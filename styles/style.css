@@ -21,11 +21,9 @@ body {
   color :#283044;
   font-size: 30px;
 }
-.container {
+#container {
   display: grid;
   grid-template-columns: 1fr;
-  flex: 1 0 auto;
-
 }
 
 /* Nav Style */
@@ -35,6 +33,7 @@ body {
   justify-content: space-between;
   padding:10px;
   border-bottom:1px solid #8b786d ;
+
 }
 
 .leftNav {
@@ -55,7 +54,7 @@ body {
 }
 
 .navLinkWrap a {
-  color: :#283044;
+  color: #283044;
   text-decoration: none;
   transition: color 0.5s;
 }
@@ -87,22 +86,50 @@ body {
   display :block;
   margin-left: auto;
   margin-right:auto;
-  width: 20%;
+  width: 10%;
 }
 
-#siteContainer {
-  display:grid;
-  grid-template-columns: 1fr 1fr 1fr;
-}
+ .tri-content {
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr 1fr;
+ }
 
-#siteContainer > div {
-  position: relative;
-  text-align: center;
-  padding:15px;
-  background-color: black;
-  color:white;
+ .tri-content > div {
+   position: relative;
+   margin: 15px;
+   border:2px solid black;
+   padding:10px;
+   background-color: #78a1bb;
+   border-radius: 10%;
+   font-size: 2em;
+ }
 
-}
+ .tri-content > div > img {
+   height:350px;
+   width:100%;
+   border-radius: 50%;
+ }
+
+ #under-content {
+ 
+   margin: 30px;
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+ }
+
+ #under-content > div {
+   border: 5px solid black;
+   position: relative;
+   background-color: #8b786d;
+   margin:20px;
+   font-size: 2em;
+ }
+
+ #under-content > div > img {
+   border-radius:10%;
+  
+ }
+ 
 /* table */
 table {
   margin-left: auto;
