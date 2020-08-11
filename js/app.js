@@ -184,7 +184,7 @@ function renderEndStaff() {
   lastRow.append(rowData);
   for (var i = 0; i < hoursOfOperation.length; i++) {
     rowData = document.createElement('td');
-    rowData.textContent = `${staffing[i]} Employees`;
+    rowData.textContent = `${staffing[i]} Staff`;
     lastRow.append(rowData);
   }
 }
