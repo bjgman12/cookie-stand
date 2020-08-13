@@ -1,4 +1,16 @@
 'use strict';
+//Local Object Storage 
+// https://www.youtube.com/watch?v=AUOzvFzdIk4
+// var newObj = {
+//   name:'brandon',
+//   age:56
+// };
+
+// var newObjSerialized = JSON.stringify(newObj);
+// localStorage.setItem('newObj',newObjSerialized);
+// var newObjNormalized = JSON.parse(localStorage.getItem('newObj'));
+// console.log(newObjNormalized);
+
 var hoursOfOperation = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm'];
 var traffic = [0.5, 0.75, 1.0, 0.6, 0.8, 1.0, 0.7, 0.4, 0.6, 0.9, 0.7, 0.5, 0.3, 0.4, 0.6];
 var orderArr = [];
@@ -8,6 +20,7 @@ var form = document.getElementById('form');
 var conText = ['First Name', 'Last Name', 'Phone Number', 'E-Mail', 'Street', 'Zip Code', 'City', 'State', 'Credit Card #', 'Exp', 'CCV', 'Billing Zip', 'Amount Ordered'];
 var keyArr = [];
 var valArr = [];
+var orderProcArr = [];
 
 var tableContainer = document.getElementById('tableContainer');
 var siteTable = document.createElement('table');
@@ -223,21 +236,38 @@ function order() {
       quantCook: document.getElementById('quantCook').value,
 
     };
-
+    
     orderArr[i] = newOrder;
-    console.log(orderArr[i]);
+    var serializedObj = JSON.stringify(orderArr[i]);
+    localStorage.setItem(`serializedObj${i}`, serializedObj);
+    console.log(localStorage);
   }
-  renderCon();
+  // renderCon();
 }
 
+function getOrders() {
+  for (var i = 0; i < localStorage.length; i++) {
+    console.log(i);
+    
+    var newOrder = JSON.parse(localStorage.getItem(`serializedObj${i}`));
+    orderProcArr.push(newOrder);
+    console.log(orderProcArr);
+  }
+  renderCon();
+ 
+}
+
+function clearOrders() {
+  localStorage.clear();
+}
 
 function renderCon() {
 
   var table = document.createElement('table');
   orderTarget.append(table);
-  for (var i = 0; i < orderArr.length; i++) {
-    keyArr = Object.keys(orderArr[i]);
-    valArr = Object.values(orderArr[i]);
+  for (var i = 0; i < orderProcArr.length; i++) {
+    keyArr = Object.keys(orderProcArr[i]);
+    valArr = Object.values(orderProcArr[i]);
     console.log(valArr);
     console.log(valArr);
     for (var j = 0; j < keyArr.length; j++) {
@@ -255,3 +285,4 @@ function renderCon() {
     }
   }
 }
+
