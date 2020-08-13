@@ -1,6 +1,13 @@
 'use strict';
 var hoursOfOperation = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm'];
 var traffic = [0.5, 0.75, 1.0, 0.6, 0.8, 1.0, 0.7, 0.4, 0.6, 0.9, 0.7, 0.5, 0.3, 0.4, 0.6];
+var orderArr = [];
+var orderNum = 0;
+var orderTarget = document.getElementById('main');
+var form = document.getElementById('form');
+var conText = ['First Name', 'Last Name', 'Phone Number', 'E-Mail', 'Street', 'Zip Code', 'City', 'State', 'Credit Card #', 'Exp', 'CCV', 'Billing Zip', 'Amount Ordered'];
+var keyArr = [];
+var valArr = [];
 
 var tableContainer = document.getElementById('tableContainer');
 var siteTable = document.createElement('table');
@@ -18,7 +25,7 @@ function baseTable() {
   tableCell.textContent = ``;
   tableRow.prepend(tableCell);
   tableCell = document.createElement('th');
-  tableCell.textContent = 'Daily Location Total';
+  tableCell.textContent = 'Daily';
   tableRow.append(tableCell);
 }
 baseTable();
@@ -57,7 +64,7 @@ Store.prototype.renderTable = function () {
     newCell.textContent = `${this.salesActual[i]} `;
     newRow.append(newCell);
   }
-  newCell.textContent = `${parseInt(this.salesSum)} Cookies`;
+  newCell.textContent = `${parseInt(this.salesSum)} Units`;
   newRow.append(newCell);
 };
 Store.prototype.staffReq = function () {
@@ -131,11 +138,11 @@ function renderEnd() {
   lastRow.append(rowData);
   for (var i = 0; i < hoursOfOperation.length; i++) {
     rowData = document.createElement('td');
-    rowData.textContent = `${hourlyTotals[i]} Cookies`;
+    rowData.textContent = `${hourlyTotals[i]} Units`;
     lastRow.append(rowData);
   }
   rowData = document.createElement('td');
-  rowData.textContent = `${total} Cookies`;
+  rowData.textContent = `${total} Units`;
   lastRow.append(rowData);
 }
 renderEnd();
@@ -174,7 +181,6 @@ function calcTotStaff() {
     staffing.push(Math.ceil(staff));
   }
 }
-
 function renderEndStaff() {
   calcTotStaff();
   var lastRow = document.createElement('tr');
@@ -190,4 +196,62 @@ function renderEndStaff() {
 }
 renderEndStaff();
 
+// button
 
+function orderLink() {
+  window.open('orderForm.html');
+}
+
+
+function order() {
+
+  orderNum++;
+  for (var i = 0; i < orderNum; i++) {
+    var newOrder = {
+      firstName: document.getElementById('firstName').value,
+      lastName: document.getElementById('lastName').value,
+      phoneNum: document.getElementById('phoneNum').value,
+      email: document.getElementById('email').value,
+      street: document.getElementById('street').value,
+      zip: document.getElementById('zip').value,
+      city: document.getElementById('city').value,
+      state: document.getElementById('state').value,
+      ccNum: document.getElementById('ccNum').value,
+      ccExp: document.getElementById('ccExp').value,
+      ccZip: document.getElementById('ccZip').value,
+      ccCcv: document.getElementById('ccCcv').value,
+      quantCook: document.getElementById('quantCook').value,
+
+    };
+
+    orderArr[i] = newOrder;
+    console.log(orderArr[i]);
+  }
+  renderCon();
+}
+
+
+function renderCon() {
+
+  var table = document.createElement('table');
+  orderTarget.append(table);
+  for (var i = 0; i < orderArr.length; i++) {
+    keyArr = Object.keys(orderArr[i]);
+    valArr = Object.values(orderArr[i]);
+    console.log(valArr);
+    console.log(valArr);
+    for (var j = 0; j < keyArr.length; j++) {
+      console.log(`check ${i}`);
+      var tableRow = document.createElement('tr');
+      table.append(tableRow);
+      var tableHead = document.createElement('th');
+      tableHead.textContent = keyArr[j];
+      tableRow.append(tableHead);
+      tableRow = document.createElement('tr');
+      var tableCell = document.createElement('td');
+      tableCell.textContent = `${valArr[j]}`;
+      tableRow.append(tableCell);
+      table.append(tableRow);
+    }
+  }
+}

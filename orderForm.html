@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Salmon Cookies</title>
+  <link rel="stylesheet" href="styles/reset.css">
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+  <header>
+    <nav>
+      <img src="images/salmon.png" alt="salmon cakes logo">
+      <ul>
+        <li> <a href="index.html">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="sales.html">Sales</a></li>
+        <li><a href="#">contact us</a></li>
+        <li>Sc</li>
+      </ul>
+    </nav>
+  </header>
+  <main id='main'>
+    <form action="orders.html" method="GET" id='form'>
+      <h2>Personal Info</h2>
+      <label>First Name</label>
+      <input id="firstName">
+
+      <label for="">Last Name</label>
+      <input type="text" id="lastName" >
+
+      <label for="">Phone Number:</label>
+      <input type="text" id="phoneNum" >
+      
+      <label for="">Email</label>
+      <input type="email" id="email">
+      
+      <h2>Address</h2>
+      <label for=""> Street #</label>
+      <input type="text" id="street" >
+      <label for="">Zip Code</label>
+      <input type="number" id = "zip">
+      <label for="">City</label>
+      <input type="text" id ="city">
+      <label for="">State</label>
+      <input type="text" id = "state">
+      <h2>Payment info.</h2>
+      <label for="">Credit Card #</label>
+      <input type="number" id = "ccNum">
+      <label for=""> Exp</label>
+      <input type="date" id = "ccExp">
+      <label for="">CCV</label> 
+      <input type="num" name="" id="ccCcv">
+      <label for="">Billing Zip</label>
+      <input type="number" id = "ccZip">
+      <h2>Quant.</h2>
+      <label for="">How Many</label>
+      <input type="number" id = "quantCook">
+      <a onclick="order()">Submit</a>
+      <!-- button only works once -->
+    </form>
+  </main>
+  <footer><ul>
+    <li><p> &copy SalmonCookie.llc</p>
+    </li>
+    <li><p>Contact us at SalCokMon@gmail.com</p></li>
+  </ul></footer>
+  <script src="js/app.js"></script>
+</body>
+
+</html>

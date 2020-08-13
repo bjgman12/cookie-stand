@@ -1,170 +1,226 @@
 
-/* Master Style */
-
-@font-face {
-  font-family:Lemonada;
-  src: url(fonts/Lemonada-Bold.ttf);
-}
-*{
-  margin:0;
-}
 body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: url("https://ihg.scene7.com/is/image/ihg/kimpton-seattle-skyline-2019-2");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #cccccc;
+}
+ /* header */
+ header {
+   height: 100px;
+   background-color:rgba(0,0,0, .7);
  
-  font-family:Lemonada;
-  background-color:#ebf5ee;
-  color: #283044;
-  height:100%;
-  display:flex;
-  flex-direction: column;
-}
-.brand {
-  color :#283044;
-  font-size: 30px;
-}
- section {
-   width: 75%;
-   margin-left: auto;
-   margin-right: auto;
  }
 
-/* Nav Style */
-
-.navWrap {
-  display:flex;
-  justify-content: space-between;
-  padding:10px;
-  border-bottom:1px solid #8b786d ;
-
-}
-
-.leftNav {
-  display:flex;
-}
-
-.navWrap > .leftNav > div {
-  margin-right: 20px;
-  font-size: 0.9em;
-  text-transform: uppercase;
-  
-}
-
-.navLinkWrap {
-  height: 22px;
-  border-bottom: 1px solid transparent;
-  transition: border-bottom 0.5s;
-}
-
-.navLinkWrap a {
-  color: #283044;
-  text-decoration: none;
-  transition: color 0.5s;
-}
-
-.navLinkWrap:hover {
-  border-bottom: 1px solid red;
-}
-
-.navLinkWrap a:hover {
-  color:red!important;
-}
-
-.activeNavLink{
-  border-bottom: 1px solid red;
-}
-.activeNavLink a{
-  color:red !important;
-}
-
-
-/* new */
-#mascot h1 {
-  text-align:center;
-  font-size: 3em;
-
-}
-
-#mascot img {
-  display :block;
-  margin-left: auto;
-  margin-right:auto;
-  width: 10%;
-}
-
- .tri-content {
-   display: grid;
-   grid-template-columns: 1fr 1fr 1fr 1fr;
+ header nav {
+   width: 1020px;
+   margin: auto;
  }
 
- .tri-content > div {
-   position: relative;
-   margin: 15px;
-   border:2px solid black;
-   padding:10px;
-   background-color: #78a1bb;
-   border-radius: 10%;
-   font-size: 2em;
+ header nav li:last-child{
+  color: rgb(0,255,255);
+  font-size: 35px;
+  font-style: oblique;
+ }
+ header img {
+ margin-top: 15px;
+ float: left;
+ }
+ header ul {
+   float:left;
  }
 
- .tri-content > div > img {
-   height:350px;
-   width:100%;
-   border-radius: 50%;
+ header li {
+   display: inline;
+   line-height: 100px;
+   margin-left: 75px;
+   text-transform:uppercase;
  }
 
- #under-content {
- 
-   margin: 30px;
-   display: grid;
-   grid-template-columns: 1fr 1fr;
- }
-
- #under-content > div {
-   border: 5px solid black;
-   position: relative;
-   background-color: #8b786d;
-   margin:20px;
-   font-size: 2em;
- }
-
- #under-content > div > img {
-   border-radius:10%;
+ header li:first-child {
+   margin-left: 30px;
   
  }
+
+ header a {
+   text-decoration: none;
+   color: rgb(0,255,255);
+   font-size: 20px;
+ }
+
+ /* Main */
+
+ main {
+  background-color:rgba(0,0,0, .7);
+   width: 1020px;
+   margin: auto;
+   margin-top: 30px;
+ }
+
+ main li:first-child {
+   margin-left: 0;
+ }
+
+ main li {
+   display: inline;
+   margin-left: 10px;
+   float: left;
+ }
+ main img {
+   margin-top: 30px;
+   margin-left: 10px;
+ }
  
+ main article{
+   width: 50%;
+   float:right;
+   margin-top: 30px;
+ }
+ main h2 {
+   font-size: 20px;
+   font-weight: bold;
+   color: rgb(0,255,255);
+ }
+
+ main p {
+   font-style: italic;
+   line-height: 20px;
+   height:331px;
+  
+   padding-top: 5px;
+   color:#ffffff;
+ }
+
+ main a{
+   background-color: #444;
+   color: #ffffff;
+   display:inline-block;
+   margin: 10px;
+   padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+ }
+ main a:hover{
+   background-color: red;
+   transition:350ms;
+   font-weight: bold;
+ }
+
+
+ footer{
+   height:125px;
+   background-color:rgba(0,0,0, .7);
+   margin-top: 30px;
+ }
+
+ footer li:first-child {
+   margin-left: 400px;
+ }
+ footer li {
+   display: inline-block;
+   margin-left:50px;
+   line-height: 125px;
+   color: rgb(0,255,255);
+   font-style: italic;
+
+ }
+
+
+
+
 /* table */
-table {
-  margin-left: auto;
-  margin-right: auto;
-  text-align:center;
-  margin-top: 2em;
-  background-color:#8b786d;
-  font-weight: bold;
-}
-table , td , tr, th {
-  border: 1px solid #bfa89e;
-  border-radius: 20px;
-  padding: 1em;
-}
-td {
-  color: black;
-}
-
-tr > :first-child {
-  color:#78a1bb;
-}
 
 th {
-  color:#78a1bb;
-}
-
-
-footer {
-  border-top: 1px solid #8b786d;
-  margin-top:20px;
-  padding:15px;
-  display:flex;
-  justify-content: space-between;
-  flex-shrink:0;
+  color: rgb(0,255,255);
+  font-weight: bold;
 
 }
-/* footer */
+
+tr td:first-child{
+  color: #ff3300;
+  font-weight:bold;
+
+}
+table {
+  color: #39ff14;
+  margin-top: 30px; 
+  padding-top: 30px;
+  text-align: center;
+  width: 960px;
+  height:300px;
+  
+
+}
+
+td {
+  border: solid 3px #c724b1;
+  border-top: transparent;
+  border-bottom: transparent;
+}
+
+/* form */
+
+form {
+  height: 800px;
+  color: #39ff14;
+  margin-left: 30px;
+  padding-top: 20px;
+  overflow: scroll;
+ 
+
+}
+
+form h2 {
+  padding-top: 80px;
+  padding-bottom: 20px;
+}
+
+form label {
+ display:block;
+ margin-top: 10px;
+}
+form input {
+  margin-top: 10px;
+}
+form :nth-child(9){
+  margin-left: 0;
+}
+
+form button {
+  background-color: #444;
+  color: #ffffff;
+  margin: 10px;
+  margin-left: 80px;
+  padding: 10px 20px;
+ border-radius: 5px;
+ cursor: pointer;
+
+}
+
+form button:hover {
+  background-color: red;
+  transition:350ms;
+  font-weight: bold;
+}
+/* Scoll bar styleing from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_custom_scrollbar2*/
+ /* width */
+ ::-webkit-scrollbar {
+   width: 15px;
+ }
+/* track */
+ ::-webkit-scrollbar-track {
+   box-shadow: insert 0 0 5px gray;
+   border-radius: 10px;
+ }
+ /* handle */
+ ::-webkit-scrollbar-thumb {
+   background: rgb(0,255,255) ;
+   border-radius: 10px;
+
+ }
+ ::-webkit-scrollbar-thumb:hover {
+  background: rgb(0, 102, 255) ;
+  transition: 350ms;
+ 
+}
