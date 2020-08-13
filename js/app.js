@@ -21,6 +21,8 @@ var conText = ['First Name', 'Last Name', 'Phone Number', 'E-Mail', 'Street', 'Z
 var keyArr = [];
 var valArr = [];
 var orderProcArr = [];
+var tableCount = 0;
+var storageCount = 0;
 
 var tableContainer = document.getElementById('tableContainer');
 var siteTable = document.createElement('table');
@@ -236,7 +238,7 @@ function order() {
       quantCook: document.getElementById('quantCook').value,
 
     };
-    
+
     orderArr[i] = newOrder;
     var serializedObj = JSON.stringify(orderArr[i]);
     localStorage.setItem(`serializedObj${i}`, serializedObj);
@@ -246,15 +248,14 @@ function order() {
 }
 
 function getOrders() {
-  for (var i = 0; i < localStorage.length; i++) {
-    console.log(i);
-    
-    var newOrder = JSON.parse(localStorage.getItem(`serializedObj${i}`));
-    orderProcArr.push(newOrder);
-    console.log(orderProcArr);
-  }
+
+  var newOrder = JSON.parse(localStorage.getItem(`serializedObj${storageCount}`));
+  orderProcArr.push(newOrder);
+  storageCount++;
+  console.log(orderProcArr);
+
   renderCon();
- 
+
 }
 
 function clearOrders() {
@@ -264,6 +265,7 @@ function clearOrders() {
 function renderCon() {
 
   var table = document.createElement('table');
+  table.setAttribute('id', `table${tableCount}`);
   orderTarget.append(table);
   for (var i = 0; i < orderProcArr.length; i++) {
     keyArr = Object.keys(orderProcArr[i]);
@@ -284,5 +286,22 @@ function renderCon() {
       table.append(tableRow);
     }
   }
+  addFillOrderButton();
+
 }
 
+function fillOrderButton() {
+  console.log('yay');
+}
+
+function addFillOrderButton() {
+  var table = document.getElementById(`table${tableCount}`);
+  var tableRow = document.createElement('tr');
+  var tableCell = document.createElement('td');
+  var fillOrder = document.createElement('a');
+  fillOrder.setAttribute('onclick', 'fillOrderButton()');
+  tableCell.append(fillOrder);
+  tableRow.append(tableCell);
+  table.append(tableRow);
+  tableCount ++;
+}
