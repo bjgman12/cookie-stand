@@ -159,8 +159,13 @@ td {
   border-bottom: transparent;
 }
 
+.proc table {
+  margin-top: 20px;
+}
+
 .proc tr>th {
-  color:#39ff14; 
+  color:#ff3300;
+  padding: 5px 
   
 }
 .proc tr>td {

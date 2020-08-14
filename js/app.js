@@ -18,9 +18,10 @@ var orderId = 0;
 var orderTarget = document.getElementById('main');
 var form = document.getElementById('form');
 var conText = ['First Name', 'Last Name', 'Phone Number', 'E-Mail', 'Street', 'Zip Code', 'City', 'State', 'Credit Card #', 'Exp', 'CCV', 'Billing Zip', 'Amount Ordered'];
+var rendCount = 0;
 var keyArr = [];
 var valArr = [];
-var orderProcArr = [0];
+var orderProcArr = [];
 var tableCount = 0;
 var storageCount = 0;
 var getCount = 0;
@@ -284,7 +285,7 @@ function addToCart() {
   orderId++;
 }
 
-function orderFin(){
+function orderFin() {
 
   var serializedObj = JSON.stringify(orderArr);
   localStorage.setItem(`serializedObj`, serializedObj);
@@ -293,8 +294,10 @@ function orderFin(){
 function getOrders() {
 
   var newOrder = JSON.parse(localStorage.getItem(`serializedObj`));
-  orderProcArr.push(newOrder[getCount]);
-  getCount++;
+  console.log(newOrder);
+  for (var i = 0; i < newOrder.length; i++) {
+    orderProcArr.push(newOrder[i]);
+  }
   renderCon();
 
 }
@@ -309,17 +312,15 @@ function fillLast() {
   localStorage.clear();
   window.open('orders.html', '_self');
 }
-
 function renderCon() {
 
   var table = document.createElement('table');
-  table.setAttribute('id', `table${tableCount}`);
-  orderTarget.append(table);
+  table.setAttribute('class', `proc`);
   for (var i = 0; i < orderProcArr.length; i++) {
-    keyArr = Object.keys(orderProcArr[i]);
-    valArr = Object.values(orderProcArr[i]);
-    console.log(valArr);
-    console.log(valArr);
+    keyArr = Object.keys(orderProcArr[rendCount]);
+    valArr = Object.values(orderProcArr[rendCount]);
+    tableCount++;
+    rendCount++;
     for (var j = 0; j < keyArr.length; j++) {
       // console.log(`check ${i}`);
       var tableRow = document.createElement('tr');
@@ -334,8 +335,8 @@ function renderCon() {
       table.append(tableRow);
     }
   }
-  tableCount++;
-  addFillOrderButton();
+  orderTarget.append(table);
+  // addFillOrderButton();
 }
 
 function fillOrderButton() {
