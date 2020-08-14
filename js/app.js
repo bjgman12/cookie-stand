@@ -14,15 +14,29 @@
 var hoursOfOperation = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm'];
 var traffic = [0.5, 0.75, 1.0, 0.6, 0.8, 1.0, 0.7, 0.4, 0.6, 0.9, 0.7, 0.5, 0.3, 0.4, 0.6];
 var orderArr = [];
-var orderNum = 0;
+var orderId = 0;
 var orderTarget = document.getElementById('main');
 var form = document.getElementById('form');
 var conText = ['First Name', 'Last Name', 'Phone Number', 'E-Mail', 'Street', 'Zip Code', 'City', 'State', 'Credit Card #', 'Exp', 'CCV', 'Billing Zip', 'Amount Ordered'];
 var keyArr = [];
 var valArr = [];
-var orderProcArr = [];
+var orderProcArr = [0];
 var tableCount = 0;
 var storageCount = 0;
+var getCount = 0;
+var firstName = '';
+var lastName = '';
+var phoneNum = '';
+var email = '';
+var street = '';
+var zip = '';
+var city = '';
+var state = '';
+var ccNum = '';
+var ccExp = '';
+var ccZip = '';
+var ccCcv = '';
+var quantCook = '';
 
 var tableContainer = document.getElementById('tableContainer');
 var siteTable = document.createElement('table');
@@ -54,7 +68,37 @@ function Store(name, minCustomer, maxCustomer, avgSale) {
   this.salesSum = 0;
   this.staffPerHour = [];
 }
+function CartItem(orderId, firstName, lastName, phoneNum, email, street, zip, city, state, ccNum, ccExp, ccZip, ccCcv, quantCook) {
+  this.orderId = orderId;
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.phoneNum = phoneNum;
+  this.email = email;
+  this.street = street;
+  this.zip = zip;
+  this.city = city;
+  this.state = state;
+  this.ccNum = ccNum;
+  this.ccExp = ccExp;
+  this.ccZip = ccZip;
+  this.ccCcv = ccCcv;
+  this.quantCook = quantCook;
+}
 
+// var newOrder = {
+//  document.getElementById('firstName').value,
+//  document.getElementById('lastName').value,
+//  document.getElementById('phoneNum').value,
+//  document.getElementById('email').value,
+//  document.getElementById('street').value,
+//  document.getElementById('zip').value,
+//  document.getElementById('city').value,
+//  document.getElementById('state').value,
+//  document.getElementById('ccNum').value,
+//  document.getElementById('ccExp').value,
+//  document.getElementById('ccZip').value,
+//  document.getElementById('ccCcv').value,
+//  document.getElementById('quantCook').value,
 Store.prototype.compileSiteSales = function () {
   var hourSales = 0;
   // calculate and store simulated amounts of cookies purchased for each hour 
@@ -214,52 +258,56 @@ renderEndStaff();
 // button
 
 function orderLink() {
-  window.open('orderForm.html');
+  window.open('orderForm.html', '_self');
+  // self opens window in same tab
 }
 
 
-function order() {
+function addToCart() {
+  var order = new CartItem(
+    orderId,
+    document.getElementById('firstName').value,
+    document.getElementById('lastName').value,
+    document.getElementById('phoneNum').value,
+    document.getElementById('email').value,
+    document.getElementById('street').value,
+    document.getElementById('zip').value,
+    document.getElementById('city').value,
+    document.getElementById('state').value,
+    document.getElementById('ccNum').value,
+    document.getElementById('ccExp').value,
+    document.getElementById('ccZip').value,
+    document.getElementById('ccCcv').value,
+    document.getElementById('quantCook').value);
+  // Store in local storage
+  orderArr.push(order);
+  orderId++;
+}
 
-  orderNum++;
-  for (var i = 0; i < orderNum; i++) {
-    var newOrder = {
-      firstName: document.getElementById('firstName').value,
-      lastName: document.getElementById('lastName').value,
-      phoneNum: document.getElementById('phoneNum').value,
-      email: document.getElementById('email').value,
-      street: document.getElementById('street').value,
-      zip: document.getElementById('zip').value,
-      city: document.getElementById('city').value,
-      state: document.getElementById('state').value,
-      ccNum: document.getElementById('ccNum').value,
-      ccExp: document.getElementById('ccExp').value,
-      ccZip: document.getElementById('ccZip').value,
-      ccCcv: document.getElementById('ccCcv').value,
-      quantCook: document.getElementById('quantCook').value,
+function orderFin(){
 
-    };
-
-    orderArr[i] = newOrder;
-    var serializedObj = JSON.stringify(orderArr[i]);
-    localStorage.setItem(`serializedObj${i}`, serializedObj);
-    console.log(localStorage);
-  }
-  // renderCon();
+  var serializedObj = JSON.stringify(orderArr);
+  localStorage.setItem(`serializedObj`, serializedObj);
 }
 
 function getOrders() {
 
-  var newOrder = JSON.parse(localStorage.getItem(`serializedObj${storageCount}`));
-  orderProcArr.push(newOrder);
-  storageCount++;
-  console.log(orderProcArr);
-
+  var newOrder = JSON.parse(localStorage.getItem(`serializedObj`));
+  orderProcArr.push(newOrder[getCount]);
+  getCount++;
   renderCon();
 
 }
 
-function clearOrders() {
+function fillOldest() {
+  // removes oldest order
+  localStorage.removeItem(`serializedObj${[localStorage.length - (localStorage.length - 1)]}`);
+}
+
+function fillLast() {
+  // removes oldest order
   localStorage.clear();
+  window.open('orders.html', '_self');
 }
 
 function renderCon() {
@@ -273,7 +321,7 @@ function renderCon() {
     console.log(valArr);
     console.log(valArr);
     for (var j = 0; j < keyArr.length; j++) {
-      console.log(`check ${i}`);
+      // console.log(`check ${i}`);
       var tableRow = document.createElement('tr');
       table.append(tableRow);
       var tableHead = document.createElement('th');
@@ -286,22 +334,28 @@ function renderCon() {
       table.append(tableRow);
     }
   }
+  tableCount++;
   addFillOrderButton();
-
 }
 
 function fillOrderButton() {
-  console.log('yay');
+  tableCount--;
+  var table = document.getElementById(`table${tableCount}`);
+  console.log(table);
+  table.setAttribute('class', 'proc');
 }
 
 function addFillOrderButton() {
-  var table = document.getElementById(`table${tableCount}`);
+
+  var table = document.getElementById(`table${tableCount - 1}`);
   var tableRow = document.createElement('tr');
   var tableCell = document.createElement('td');
   var fillOrder = document.createElement('a');
+  fillOrder.textContent = 'Fill Order';
   fillOrder.setAttribute('onclick', 'fillOrderButton()');
   tableCell.append(fillOrder);
   tableRow.append(tableCell);
   table.append(tableRow);
-  tableCount ++;
 }
+
+

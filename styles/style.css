@@ -159,6 +159,14 @@ td {
   border-bottom: transparent;
 }
 
+.proc tr>th {
+  color:#39ff14; 
+  
+}
+.proc tr>td {
+  color:#39ff14; 
+}
+
 /* form */
 
 form {
