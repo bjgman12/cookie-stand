@@ -13,7 +13,7 @@
       <img src="images/salmon.png" alt="salmon cakes logo">
       <ul>
         <li> <a href="index.html">Home</a></li>
-        <li><a href="#">About</a></li>
+        <li><a href="orders.html">About</a></li>
         <li><a href="sales.html">Sales</a></li>
         <li><a href="#">contact us</a></li>
         <li>Sc</li>
@@ -24,40 +24,38 @@
     <form action="orders.html" method="GET" id='form'>
       <h2>Personal Info</h2>
       <label>First Name</label>
-      <input id="firstName">
-
+      <input id="firstName"required>
       <label for="">Last Name</label>
-      <input type="text" id="lastName" >
-
+      <input type="text" id="lastName"required >
       <label for="">Phone Number:</label>
-      <input type="text" id="phoneNum" >
-      
+      <input type="text" id="phoneNum"required >
       <label for="">Email</label>
       <input type="email" id="email">
-      
       <h2>Address</h2>
       <label for=""> Street #</label>
-      <input type="text" id="street" >
+      <input type="text" id="street"required >
       <label for="">Zip Code</label>
-      <input type="number" id = "zip">
+      <input type="number" id = "zip"required>
       <label for="">City</label>
-      <input type="text" id ="city">
+      <input type="text" id ="city"required>
       <label for="">State</label>
-      <input type="text" id = "state">
+      <input type="text" id = "state"required>
       <h2>Payment info.</h2>
       <label for="">Credit Card #</label>
-      <input type="number" id = "ccNum">
+      <input type="number" id = "ccNum"required>
       <label for=""> Exp</label>
-      <input type="date" id = "ccExp">
+      <input type="date" id = "ccExp"required>
       <label for="">CCV</label> 
-      <input type="num" name="" id="ccCcv">
+      <input type="num" name="" id="ccCcv"required>
       <label for="">Billing Zip</label>
-      <input type="number" id = "ccZip">
+      <input type="number" id = "ccZip"required>
       <h2>Quant.</h2>
       <label for="">How Many</label>
-      <input type="number" id = "quantCook">
-      <a onclick="order()">Submit</a>
-      <!-- button only works once -->
+      <input type="number" id = "quantCook"required>
+      <a onclick="addToCart();">Add To Cart</a>
+      <a onclick="orderFin();">Sumbit Orders</a>
+      <a href="orders.html">Orders</a>
+     
     </form>
   </main>
   <footer><ul>
