@@ -180,7 +180,7 @@ td {
 /* form */
 
 form {
-  height: 800px;
+  height: 300px;
   color: #39ff14;
   margin-left: 30px;
   padding-top: 20px;
@@ -241,4 +241,23 @@ form button:hover {
   background: rgb(0, 102, 255) ;
   transition: 350ms;
  
+}
+
+/* add new site form */
+
+#newSite {
+
+}
+
+#formContainer {
+  height:75px;
+}
+#formContainer label {
+  display: inline-block;
+  margin-left:30px
+  
+}
+
+#formContainer {
+  padding-bottom: 10px;
 }
