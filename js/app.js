@@ -16,28 +16,13 @@ var traffic = [0.5, 0.75, 1.0, 0.6, 0.8, 1.0, 0.7, 0.4, 0.6, 0.9, 0.7, 0.5, 0.3,
 var orderArr = [];
 var orderId = 0;
 var orderTarget = document.getElementById('main');
-var form = document.getElementById('form');
-var conText = ['First Name', 'Last Name', 'Phone Number', 'E-Mail', 'Street', 'Zip Code', 'City', 'State', 'Credit Card #', 'Exp', 'CCV', 'Billing Zip', 'Amount Ordered'];
 var rendCount = 0;
 var keyArr = [];
 var valArr = [];
 var orderProcArr = [];
 var tableCount = 0;
-var storageCount = 0;
-var getCount = 0;
-var firstName = '';
-var lastName = '';
-var phoneNum = '';
-var email = '';
-var street = '';
-var zip = '';
-var city = '';
-var state = '';
-var ccNum = '';
-var ccExp = '';
-var ccZip = '';
-var ccCcv = '';
-var quantCook = '';
+
+
 
 var tableContainer = document.getElementById('tableContainer');
 var siteTable = document.createElement('table');
