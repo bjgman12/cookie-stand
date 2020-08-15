@@ -21,16 +21,20 @@ var keyArr = [];
 var valArr = [];
 var orderProcArr = [];
 var tableCount = 0;
+var sites = [];
 
 
 
 var tableContainer = document.getElementById('tableContainer');
 var siteTable = document.createElement('table');
+siteTable.setAttribute('id','siteTable');
+tableContainer.append(siteTable);
 function baseTable() {
+  var useTable = document.getElementById('siteTable');
   var tableRow = document.createElement('tr');
   var tableCell = document.createElement('th');
   tableContainer.append(siteTable);
-  siteTable.append(tableRow);
+  useTable.append(tableRow);
   tableRow.append(tableCell);
   for (var i = 0; i < hoursOfOperation.length; i++) {
     tableCell.textContent = `${hoursOfOperation[i]}`;
@@ -53,6 +57,7 @@ function Store(name, minCustomer, maxCustomer, avgSale) {
   this.salesActual = [];
   this.salesSum = 0;
   this.staffPerHour = [];
+  sites.push(this);
 }
 function CartItem(orderId, firstName, lastName, phoneNum, email, street, zip, city, state, ccNum, ccExp, ccZip, ccCcv, quantCook) {
   this.orderId = orderId;
@@ -71,20 +76,6 @@ function CartItem(orderId, firstName, lastName, phoneNum, email, street, zip, ci
   this.quantCook = quantCook;
 }
 
-// var newOrder = {
-//  document.getElementById('firstName').value,
-//  document.getElementById('lastName').value,
-//  document.getElementById('phoneNum').value,
-//  document.getElementById('email').value,
-//  document.getElementById('street').value,
-//  document.getElementById('zip').value,
-//  document.getElementById('city').value,
-//  document.getElementById('state').value,
-//  document.getElementById('ccNum').value,
-//  document.getElementById('ccExp').value,
-//  document.getElementById('ccZip').value,
-//  document.getElementById('ccCcv').value,
-//  document.getElementById('quantCook').value,
 Store.prototype.compileSiteSales = function () {
   var hourSales = 0;
   // calculate and store simulated amounts of cookies purchased for each hour 
@@ -96,13 +87,16 @@ Store.prototype.compileSiteSales = function () {
     this.salesActual.push(parseInt(hourSales));
   }
 };
-
+Store.prototype.resetSiteSales = function (){
+  this.salesSum = 0;
+};
 Store.prototype.renderTable = function () {
   this.compileSiteSales();
+  var useTable = document.getElementById('siteTable');
   var newRow = document.createElement('tr');
   var newCell = document.createElement('td');
   newCell.textContent = `${this.name}`;
-  siteTable.append(newRow);
+  useTable.append(newRow);
   newRow.append(newCell);
   for (var i = 0; i <= hoursOfOperation.length; i++) {
     newCell = document.createElement('td');
@@ -140,27 +134,30 @@ Store.prototype.renderStaffTable = function () {
 };
 
 
-var sites = [];
 var seattle = new Store('Seattle', 23, 65, 6.3);
-sites.push(seattle);
 var tokyo = new Store('Tokyo', 3, 24, 1.2);
-sites.push(tokyo);
 var dubai = new Store('Dubai', 11, 38, 3.7);
-sites.push(dubai);
 var paris = new Store('Paris', 20, 38, 2.3);
-sites.push(paris);
 var lima = new Store('Lima', 2, 16, 4.6);
-sites.push(lima);
 
-seattle.renderTable();
-tokyo.renderTable();
-dubai.renderTable();
-paris.renderTable();
-lima.renderTable();
 
+function renderTableContent(){
+  for (var i = 0 ; i < sites.length ; i ++){
+    sites[i].renderTable();
+  }
+}
+renderTableContent();
+
+function resetSalesSum(){
+  for (var i = 0 ; i < sites.length ; i ++){
+    sites[i].resetSiteSales();
+  }
+}
 var hourlyTotals = [];
+
 function sumHour(totalsArray) {
-  var total = 0;
+  var totals = 0;
+  console.log(totals);
   for (var j = 0; j < hoursOfOperation.length; j++) {
     var hour = 0;
     for (var i = 0; i < sites.length; i++) {
@@ -169,17 +166,18 @@ function sumHour(totalsArray) {
     totalsArray.push(hour);
   }
   for (i = 0; i < sites.length; i++) {
-    total += sites[i].salesSum;
-
+    totals += sites[i].salesSum;
+    console.log(totals);
   }
-  return Math.ceil(total);
+  return Math.ceil(totals);
 }
 var total = sumHour(hourlyTotals);
 function renderEnd() {
+  var useTable = document.getElementById('siteTable');
   var lastRow = document.createElement('tr');
   var rowData = document.createElement('td');
   rowData.textContent = 'Hourly Totals';
-  siteTable.append(lastRow);
+  useTable.append(lastRow);
   lastRow.append(rowData);
   for (var i = 0; i < hoursOfOperation.length; i++) {
     rowData = document.createElement('td');
@@ -343,5 +341,34 @@ function addFillOrderButton() {
   tableRow.append(tableCell);
   table.append(tableRow);
 }
+//get element from DOM
 
+var formListener = document.getElementById('formContainer');
+
+//define event handler
+//takes once param
+function handleSumbit(event){
+  event.preventDefault();
+
+  var city = event.target.city.value;
+  var minCust = parseInt(event.target.minCust.value);
+  var maxCust = parseInt(event.target.maxCust.value);
+  var avgFormSale = parseInt(event.target.avgFormSale.value);
+
+  //clear the form
+
+  //create new Store
+  var newStore = new Store(city,minCust,maxCust,avgFormSale);
+  //render new store
+  document.getElementById('siteTable').innerHTML = '';
+  resetSalesSum();
+  baseTable();
+  renderTableContent();
+  hourlyTotals = [];
+  total = sumHour(hourlyTotals);
+  renderEnd();
+}
+//addEventListener
+//needs 2 Params
+formListener.addEventListener('submit',handleSumbit);
 
