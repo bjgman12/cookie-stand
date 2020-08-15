@@ -1,6 +1,10 @@
 
+@font-face{
+  font-family: DSFont;
+  src: url(OptimusPrinceps.ttf);
+}
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: DSFont, Arial sans-serif;
   background-image: url("https://ihg.scene7.com/is/image/ihg/kimpton-seattle-skyline-2019-2");
   background-repeat: no-repeat;
   background-size: cover;
@@ -157,10 +161,16 @@ td {
   border: solid 3px #c724b1;
   border-top: transparent;
   border-bottom: transparent;
+  font-family: sans-serif;
+}
+
+.proc table {
+  margin-top: 20px;
 }
 
 .proc tr>th {
-  color:#39ff14; 
+  color:#ff3300;
+  padding: 5px 
   
 }
 .proc tr>td {
